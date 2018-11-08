@@ -11,7 +11,8 @@
        console.log('ServiceWorker registration failed: ', error);
      });
    });
- }
+}
+
  // Files to cache
  var cacheName = cache_no1
 var filesToCache = [
@@ -25,8 +26,9 @@ var filesToCache = [
       '/Mobile-Application/Assignment3/icons/lines.png',
       '/Mobile-Application/Assignment3/icons/menu.jpg',
       '/Mobile-Application/Assignment3/icons/money.png',
-      '/Mobile-Application/Assignment3/icons/search.png'
- ]
+      '/Mobile-Application/Assignment3/icons/search.png',
+      '/Mobile-Application/Assignment3/manifest.json'
+]
 // //Installing Service Worker
 self.addEventListener('install', function(event) {
    console.log('[Service Worker] Install');
