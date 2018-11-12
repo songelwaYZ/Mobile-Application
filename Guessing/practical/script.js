@@ -25,8 +25,8 @@ const app = new Vue({
                 this.timer = 10
                 this.computerGuess = generateGuess()
             } else{
-                this.errors.push(true)
-            if(this.errors.length >=3){
+                this.$data.errors.push(true)
+            if(this.$data.errors.length >=3){
                 alert("Wrong generateGuess, Game Over!!" +this.computerGuess)
                 //reset game
                 this.error = []

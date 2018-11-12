@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="bulma.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div class="section" id="app">
+            <form class="form" v-on:submit.prevent>
+                <div class="field" >
+                    <label class="label">Username</label>
+                        <input v-model="username" class="input" type="text" id="username" v-model="username" v-bind:class="{'is-danger':usernameErrorMsg}" >
+                    <div class="has-text-danger" v-if="usernameError==true">{{UsernameErrorMsg}}</div>
+                    
+                    
+                </div>
+                <div class="field">
+                        <label class="label">Password</label>
+                            <input v-model="password" class="input" type="text" id="password" v-model="password" v-bind:class="{'is-danger':passwordErrorMsg}" >
+                        <div class="has-text-danger" v-if="passwordError==true">{{passwordErrorMsg}}</div>
+                        
+                </div>
+               
+
+                <div class="filed">
+                        <button v-on:click="enter" class="button is-primary">Login</button>
+                </div>
+            </form>
+
+        </div>
+        <div>
+            Don't have account?
+            <a href="">Register</a>
+        </div>
+        <script src="script.js"></script>
+        
+    </body>
+</html
