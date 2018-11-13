@@ -1,41 +1,55 @@
 var app = new Vue({
-    el: "#app",
+    el: '#app',
     data:{
-        password: '',
-        username: '',
-        usernameError: false,
-        passwordError: false,
-        usernameErrorMsg: '',
-        passwordErrorMsg: ''
+        username:'',
+        password :'',
+        usernameError:false,
+        passwordError:false,
+        usernameErrorMessage:[],
+        passwordErrorMessage:[]
     },
-    methods:{
-        enter:function(){
-            this.usernameError= false
-            this.passwordError = false
-            this.usernameErrorMsg = ''
-            this.passwordErrorMsg = ''
+    methods: {
+        validate: function () {
+            this.passwordError=false 
+            this.usernameError=false
+            this.usernameErrorMessage= []
+            this.passwordErrorMessage= []
 
-            if(this.password.length>6){
-                this.passwordError = true
-                this.$data.passwordErrorMsg = 'Password too short'
-
+            if(this.password.length < 6){
+                this.passwordError=true
+                this.passwordErrorMessage.push({msg:'Password is too short', date: Date.now()})
             }
-
-            if(!this.username.includes('@')){
-                this.usernameError = true
-                this.usernameError = true
-                this.userErrorMsg = 'Username must be a valid email address'
-
-
+            
+            if(this.username.length < 3){
+                this.usernameError=true
+                this.usernameErrorMessage.push({msg:'Username is too short', date: Date.now()})
             }
-            if(this.username.length>3){
-                this.usernameError = true
-                this.usernameErrorMsg = 'Username too short'
-
-
+            
+            if(!(this.username.includes('@'))){
+                this.usernameError=true
+                this.usernameErrorMessage.push({msg:'Username must be a valid email address',date:Date.now()})
             }
-
         }
     }
-
 })
+
+  // app.js
+
+// window.addEventListener('load', function() {
+
+//     var webAuth = new auth0.WebAuth({
+//       domain: 'zizo123.auth0.com',
+//       clientID: 'aXEW29OOBVzt7K9Fq_Zy6votXUPHpA5p',
+//       responseType: 'token id_token',
+//       scope: 'openid',
+//       redirectUri: window.location.href
+//     });
+  
+//     var loginBtn = document.getElementById('login');
+  
+//     loginBtn.addEventListener('click', function(e) {
+//       e.preventDefault();
+//       webAuth.authorize();
+//     });
+  
+//   });

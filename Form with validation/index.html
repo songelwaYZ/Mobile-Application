@@ -1,37 +1,58 @@
 <html>
     <head>
-        <link rel="stylesheet" href="bulma.min.css">
+        <title>Form Validation</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" >
+       <!--<script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    </head>
-    <body>
+      </head>
+      <body>
+            <div class="field"> 
+            <h2>Form With Validation</h2><br>
+            </div>
         <div class="section" id="app">
-            <form class="form" v-on:submit.prevent>
-                <div class="field" >
-                    <label class="label">Username</label>
-                        <input v-model="username" class="input" type="text" id="username" v-model="username" v-bind:class="{'is-danger':usernameErrorMsg}" >
-                    <div class="has-text-danger" v-if="usernameError==true">{{UsernameErrorMsg}}</div>
-                    
-                    
-                </div>
+            <form class ="form" v-on:submit.prevent>
                 <div class="field">
-                        <label class="label">Password</label>
-                            <input v-model="password" class="input" type="text" id="password" v-model="password" v-bind:class="{'is-danger':passwordErrorMsg}" >
-                        <div class="has-text-danger" v-if="passwordError==true">{{passwordErrorMsg}}</div>
-                        
-                </div>
-               
+                    <label class="label">Username</label>
+                    <input v-model="username" class="input" type="text" id="username" v-bind:class="{'is-danger':usernameErrorMessage}"> 
+                  <!--- <div class="has-text-danger" v-if="usernameError">{{usernameErrorMessage}}</div>-->
+                    <ul>
+                        <li v-for="error in usernameErrorMessage">
+                            {{error.msg}}
+                            <span>
+                                <small>{{ new Date(error.date).toString() }}</small>
+                            </span>
 
-                <div class="filed">
-                        <button v-on:click="enter" class="button is-primary">Login</button>
+                        </li>
+                    </ul>
                 </div>
+
+                <div class="field"> 
+                    <label class="label">Password</label>     
+                    <input v-model="password"  class="input" type="password" id="password" v-bind:class="{'is-danger':passwordErrorMessage}" >
+                   <!--<div  class="has-text-danger" v-if="passwordError">{{passwordErrorMessage}}</div>--> 
+                    <ul>
+                            <li v-for="error in passwordErrorMessage">
+                                {{error.msg}}
+                                <span>
+                                    <small>{{ new Date(error.date).toString() }}</small>
+                                </span>
+    
+                            </li>
+                    </ul>
+                    
+                  </div>
+
+                  <div class="field">       
+                    <button v-on:click="validate" class="buttont" id="login"   type="submit">Login</button> 
+                  </div>
+                
             </form>
+            <div>
+                Don't have an account?
+                <a href="">Register</a>
+            </div>
 
-        </div>
-        <div>
-            Don't have account?
-            <a href="">Register</a>
         </div>
         <script src="script.js"></script>
-        
     </body>
-</html
+</html>
