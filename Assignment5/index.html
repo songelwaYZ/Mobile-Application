@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bulma.min.css">
+    <link rel="manifest" href="manifest.json">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  
+  <body>
+    <section class="section" id="section1">
+      <div class="container has-text-centered">
+          <img src="images/trainStation.jpg" alt="Rail Way">
+            <h1 class = "is-size-1" style="font-style:Courier">CityRailsWays</h1>
+      </div>
+  
+      <div class="section" id="app">
+        <form class ="form" v-on:submit.prevent>
+            <div class="field">
+                <label class="label">Username</label>
+                <input v-model="username" class="input" type="text" id="username" v-bind:class="{'is-danger':usernameErrorMessage}"> 
+              <!--- <div class="has-text-danger" v-if="usernameError">{{usernameErrorMessage}}</div>-->
+                <ul>
+                    <li v-for="error in usernameErrorMessage">
+                        {{error.msg}}
+                        <span>
+                            <small>{{ new Date(error.date).toString() }}</small>
+                        </span>
+
+                    </li>
+                </ul>
+            </div>
+
+            <div class="field"> 
+                <label class="label">Password</label>     
+                <input v-model="password"  class="input" type="password" id="password" v-bind:class="{'is-danger':passwordErrorMessage}" >
+               <!--<div  class="has-text-danger" v-if="passwordError">{{passwordErrorMessage}}</div>--> 
+                <ul>
+                        <li v-for="error in passwordErrorMessage">
+                            {{error.msg}}
+                            <span>
+                                <small>{{ new Date(error.date).toString() }}</small>
+                            </span>
+
+                        </li>
+                </ul>
+                
+              </div>
+
+              <div class="field">       
+                <button v-on:click="validate" class="buttont" id="login"   type="submit">Login</button> 
+              </div>
+            
+        </form>
+        <div>
+            Don't have an account?
+            <a href="">Register</a>
+        </div>
+
+    </div>
+    </section>
+    
+    <div id="section2">
+    <section class="section" >
+      <div class="container has-text-centered">
+        <img scr="../icons/menu.jpg" alt="menu icon">
+        <h1 class="is-size-1" style="font-size: 1em "></h1>
+
+      </div>
+      <div class="container2" style=margin-top:2em>
+          <form>
+              <fieldset>
+                 <legend>Selecting Your Starting Point</legend>
+                 <p>
+                    <label>Select Location</label>
+                    <select id = "myList">
+                      <option value = "1">one</option>
+                      <option value = "2">two</option>
+                      <option value = "3">three</option>
+                      <option value = "4">four</option>
+                    </select>
+                 </p>
+              </fieldset>
+           </form>
+           <form>
+              <fieldset>
+                 <legend>Selecting Your Distination</legend>
+                 <p>
+                    <label>Select Distination</label>
+                    <select id = "myList2">
+                      <option value = "1">one</option>
+                      <option value = "2">two</option>
+                      <option value = "3">three</option>
+                      <option value = "4">four</option>
+                    </select>
+                 </p>
+              </fieldset>
+           </form>
+
+      </div>
+
+    </section>
+  </div>
+    <div class="container is-fullhd" id="map-form" style="width:100vm">
+      <div id="map" style="width: 100vm; height: 100px;"></div>
+    </div>
+  <script src="scripts/mainscript.js"></script>   
+  </body>
+</html>

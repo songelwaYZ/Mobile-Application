@@ -1,0 +1,36 @@
+{
+    "name": "PWA Railway Mobile Application",
+    "short_name": "Mobile App",
+    "description": "A PWA that tracks all train queries",
+    "icons": [
+        {
+            "src": "icons/complaint.jpg",
+            "size": "100x100",
+            "type": "image/jpg"
+        },
+        {
+            "src": "icons/lines.png",
+            "size": "100x100",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/menu.jpg",
+            "size": "100x100",
+            "type": "image/jpg"
+        },
+        {
+            "src": "icons/money.png",
+            "size": "100x100",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/search.png",
+            "size": "100x100",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/Mobile-Aplication/Assignment3/index.html",
+    "display": "fullscreen",
+    "theme_color": "#B12A34",
+    "background_color": "white"
+}
