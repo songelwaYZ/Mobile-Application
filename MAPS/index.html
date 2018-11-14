@@ -1,6 +1,7 @@
 <html>
     <head>
             <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+            
     </head>
     <body>
         <div id="app" class="section">
@@ -11,17 +12,24 @@
                 </div>
                     <div class="field">
                         <button class="button" id="search" v-on:click="search">Search</button>
+                        <button class="button" id="find" v-on:click="find">Find</button>
                     </div>
             </form>
 
-            <div id="results_window" class="container">
+            <div id="result_window" class="container">
                 <ul>
-                    <li v-for="results in results" @click="klick(result)">
-                    {{results.label}}
+                    <li v-for="result in results" @click="klick(result)">
+                    {{result.label}}
                     </li>
                 </ul>
             </div>
+            <div id="geo_results" class="container">
+                    <div v-for="result in geoResults">
+                      {{ result.Location.DisplayPosition }}
+                    </div>
+            </div>
         </div>
+        
         <script src ="script.js"></script>
     </body>
 </html>
