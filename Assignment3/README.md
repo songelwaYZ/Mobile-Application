@@ -1,5 +1,7 @@
 # Mobile-Application
-Protoype: https://marvelapp.com/52hii06/screen/49932197
+-HTML design for the prototype greated on Assignment 2
 
-ZEIT URL: https://mobile-application-tsaudqxxkz.now.sh/
+-Also a service worker was installed and manifest.json was added
+
+-ZEIT URL: https://mobile-application-tsaudqxxkz.now.sh/
 
