@@ -5,20 +5,54 @@
     <link rel="stylesheet" href="bulma.min.css">
     <link rel="manifest" href="manifest.json">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <style>
+        body { 
+          overflow: hidden;
+          margin:0;
+          padding: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100vh;
+          width: 100vw;
+        }
+        #map { 
+          height: 80vh; 
+        }
+        #search { 
+          /* position: absolute; */
+          height: 20vh;
+          z-index: 100000;
+          width: 100%;
+        }
+        #innersearch {
+          width: 20%;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 10px;
+        }
+        #innersearch input {
+          margin-bottom: 5px;
+        }
+      </style>
   </head>
   
   <body>
     <section class="section" id="section1">
-      <div class="container has-text-centered">
-          <img src="images/trainStation.jpg" alt="Rail Way">
-            <h1 class = "is-size-1" style="font-style:Courier">CityRailsWays</h1>
-      </div>
+      
   
       <div class="section" id="app">
+        <div id="page1">
+            <div class="container has-text-centered">
+                <img src="images/trainStation.jpg" alt="Rail Way">
+                  <h1 class = "is-size-1" style="font-style:Courier">CityRailsWays</h1>
+            </div>
         <form class ="form" v-on:submit.prevent>
+
             <div class="field">
                 <label class="label">Username</label>
                 <input v-model="username" class="input" type="text" id="username" v-bind:class="{'is-danger':usernameErrorMessage}"> 
@@ -59,54 +93,36 @@
             Don't have an account?
             <a href="">Register</a>
         </div>
+      </div>
+        <div id="search">
+            <div id="innersearch">
+              <form v-on:submit.prevent>
+                <div>
+                  <input 
+                    placeholder="start" 
+                    v-model="startAddress" 
+                    v-on:keyup="autocomplete(true)">
+                </div>
+                <div>
+                  <input 
+                    placeholder="end" 
+                    v-model="destinationAddress"
+                    v-on:keyup="autocomplete(false)">
+                </div>
+                <button @click="search">Search</button>
+              </form>
+              
+            </div>
+          </div>
+          
+          <div v-for="result in autoCompleteResults" @click="resultSelect(result)">
+            {{ result.label }}
+          </div>
 
     </div>
-    </section>
+  
+      <div id="map"></div>
     
-    <div id="section2">
-    <section class="section" >
-      <div class="container has-text-centered">
-        <img scr="../icons/menu.jpg" alt="menu icon">
-        <h1 class="is-size-1" style="font-size: 1em "></h1>
-
-      </div>
-      <div class="container2" style=margin-top:2em>
-          <form>
-              <fieldset>
-                 <legend>Selecting Your Starting Point</legend>
-                 <p>
-                    <label>Select Location</label>
-                    <select id = "myList">
-                      <option value = "1">one</option>
-                      <option value = "2">two</option>
-                      <option value = "3">three</option>
-                      <option value = "4">four</option>
-                    </select>
-                 </p>
-              </fieldset>
-           </form>
-           <form>
-              <fieldset>
-                 <legend>Selecting Your Distination</legend>
-                 <p>
-                    <label>Select Distination</label>
-                    <select id = "myList2">
-                      <option value = "1">one</option>
-                      <option value = "2">two</option>
-                      <option value = "3">three</option>
-                      <option value = "4">four</option>
-                    </select>
-                 </p>
-              </fieldset>
-           </form>
-
-      </div>
-
-    </section>
-  </div>
-    <div class="container is-fullhd" id="map-form" style="width:100vm">
-      <div id="map" style="width: 100vm; height: 100px;"></div>
-    </div>
-  <script src="scripts/mainscript.js"></script>   
+    <script src="scripts/mainscript.js"></script>   
   </body>
 </html>
